@@ -6,7 +6,7 @@ import {
   ValidateNested,
 } from 'class-validator';
 import mongoose from 'mongoose';
-import { CreateAddressDto } from './CreateAddress.dto';
+import { CreateAddressDto } from './createAddress.dto';
 
 export const CustomerSchema = new mongoose.Schema({
   email: String,

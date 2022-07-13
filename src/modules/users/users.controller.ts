@@ -1,4 +1,5 @@
 import {
+  Body,
   ClassSerializerInterceptor,
   Controller,
   Get,
@@ -7,21 +8,40 @@ import {
   Inject,
   Param,
   ParseIntPipe,
+  Post,
   UseFilters,
   UseInterceptors,
 } from '@nestjs/common';
+import { ApiQuery, ApiTags } from '@nestjs/swagger';
+import { UserDto } from './dtos/createUsers.dto';
 import { NotFoundExceptions } from './exceptions/NotFound.exceptions';
 import { HttpExceptionFilter } from './filters/HttpExceptions.filter';
 import { SerializedUsers } from './types';
 import { UsersService } from './users.service';
 
 @Controller('users')
+@ApiTags('Users')
 export class UsersController {
   constructor(
     @Inject('USER_SERVICE') private readonly userService: UsersService,
   ) {}
   @UseInterceptors(ClassSerializerInterceptor)
+  @Post()
+  async create(@Body() createUserDto: UserDto) {
+    return createUserDto;
+  }
   @Get('')
+  @ApiQuery({
+    example: 10,
+    required: false,
+    schema: {
+      minimum: 3,
+      maximum: 10000,
+      type: 'number',
+    },
+    name: 'limit',
+    description: 'default value: 10',
+  })
   getUsers() {
     return this.userService.getUsers();
   }

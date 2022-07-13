@@ -12,10 +12,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
     console.log(exception.getResponse());
     console.log(exception.getStatus());
     console.log(exception);
-
     const context = host.switchToHttp();
     const response = context.getResponse<Response>();
-
     response.send({
       statusCode: exception.getStatus(),
       message: exception.getResponse(),

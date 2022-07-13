@@ -12,8 +12,10 @@ import {
 import { Response } from 'express';
 import { CreateCustomerDto } from 'src/modules/customers/dtos/createCustomer.dto';
 import { CustomersService } from 'src/modules/customers/customers.service';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('customers')
+@ApiTags('Customers')
 export class CustomersController {
   constructor(private customerService: CustomersService) {}
   @Get('')

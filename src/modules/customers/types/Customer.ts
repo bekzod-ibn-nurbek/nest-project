@@ -1,4 +1,4 @@
-import { CreateAddressDto } from '../dtos/CreateAddress.dto';
+import { CreateAddressDto } from '../dtos/createAddress.dto';
 
 export interface Customer {
   _id: string;
